@@ -1,0 +1,91 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'pamong.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Pamong _$PamongFromJson(Map<String, dynamic> json) => Pamong(
+      pamongId: json['pamong_id'] as int?,
+      configId: json['config_id'] as int?,
+      pamongNama: json['pamong_nama'] as String?,
+      gelarDepan: json['gelar_depan'],
+      gelarBelakang: json['gelar_belakang'],
+      pamongNip: json['pamong_nip'] as String?,
+      pamongTagIdCard: json['pamong_tag_id_card'],
+      pamongPin: json['pamong_pin'] as String?,
+      pamongNik: json['pamong_nik'],
+      pamongStatus: json['pamong_status'] as int?,
+      pamongTglTerdaftar: json['pamong_tgl_terdaftar'] as String?,
+      pamongTtd: json['pamong_ttd'],
+      foto: json['foto'],
+      idPend: json['id_pend'] as int?,
+      pamongTempatlahir: json['pamong_tempatlahir'],
+      pamongTanggallahir: json['pamong_tanggallahir'],
+      pamongSex: json['pamong_sex'],
+      pamongPendidikan: json['pamong_pendidikan'],
+      pamongAgama: json['pamong_agama'],
+      pamongNosk: json['pamong_nosk'] as String?,
+      pamongTglsk: json['pamong_tglsk'],
+      pamongMasajab: json['pamong_masajab'],
+      urut: json['urut'] as int?,
+      pamongNiap: json['pamong_niap'] as String?,
+      pamongPangkat: json['pamong_pangkat'] as String?,
+      pamongNohenti: json['pamong_nohenti'],
+      pamongTglhenti: json['pamong_tglhenti'],
+      pamongUb: json['pamong_ub'] as int?,
+      atasan: json['atasan'],
+      baganTingkat: json['bagan_tingkat'],
+      baganOffset: json['bagan_offset'],
+      baganLayout: json['bagan_layout'] as String?,
+      baganWarna: json['bagan_warna'] as String?,
+      kehadiran: json['kehadiran'] as int?,
+      jabatanId: json['jabatan_id'] as int?,
+      penduduk: json['penduduk'] == null
+          ? null
+          : Penduduk.fromJson(json['penduduk'] as Map<String, dynamic>),
+      jabatan: json['jabatan'] == null
+          ? null
+          : Jabatan.fromJson(json['jabatan'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$PamongToJson(Pamong instance) => <String, dynamic>{
+      'pamong_id': instance.pamongId,
+      'config_id': instance.configId,
+      'pamong_nama': instance.pamongNama,
+      'gelar_depan': instance.gelarDepan,
+      'gelar_belakang': instance.gelarBelakang,
+      'pamong_nip': instance.pamongNip,
+      'pamong_tag_id_card': instance.pamongTagIdCard,
+      'pamong_pin': instance.pamongPin,
+      'pamong_nik': instance.pamongNik,
+      'pamong_status': instance.pamongStatus,
+      'pamong_tgl_terdaftar': instance.pamongTglTerdaftar,
+      'pamong_ttd': instance.pamongTtd,
+      'foto': instance.foto,
+      'id_pend': instance.idPend,
+      'pamong_tempatlahir': instance.pamongTempatlahir,
+      'pamong_tanggallahir': instance.pamongTanggallahir,
+      'pamong_sex': instance.pamongSex,
+      'pamong_pendidikan': instance.pamongPendidikan,
+      'pamong_agama': instance.pamongAgama,
+      'pamong_nosk': instance.pamongNosk,
+      'pamong_tglsk': instance.pamongTglsk,
+      'pamong_masajab': instance.pamongMasajab,
+      'urut': instance.urut,
+      'pamong_niap': instance.pamongNiap,
+      'pamong_pangkat': instance.pamongPangkat,
+      'pamong_nohenti': instance.pamongNohenti,
+      'pamong_tglhenti': instance.pamongTglhenti,
+      'pamong_ub': instance.pamongUb,
+      'atasan': instance.atasan,
+      'bagan_tingkat': instance.baganTingkat,
+      'bagan_offset': instance.baganOffset,
+      'bagan_layout': instance.baganLayout,
+      'bagan_warna': instance.baganWarna,
+      'kehadiran': instance.kehadiran,
+      'jabatan_id': instance.jabatanId,
+      'penduduk': instance.penduduk,
+      'jabatan': instance.jabatan,
+    };
