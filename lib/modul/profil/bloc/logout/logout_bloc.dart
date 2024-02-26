@@ -13,17 +13,13 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
       emit(state.copyWith(status: PostStatus.loading));
       try {
         final logout = await Profilservice(httpservice: HttpService()).logout();
-        if (logout['status'] == false) {
-          emit(state.copyWith(
-              status: PostStatus.failure, pesan: logout['message']));
-        } else {
-          var userbox = await Hive.openBox('user');
-          userbox.deleteFromDisk();
-          var encryptedBox = await Hive.openBox('vaultBox');
-          encryptedBox.deleteFromDisk();
 
-          return emit(state.copyWith(status: PostStatus.success));
-        }
+        var userbox = await Hive.openBox('user');
+        userbox.deleteFromDisk();
+        var encryptedBox = await Hive.openBox('vaultBox');
+        encryptedBox.deleteFromDisk();
+
+        return emit(state.copyWith(status: PostStatus.success));
       } catch (e) {
         emit(state.copyWith(status: PostStatus.failure, pesan: e.toString()));
       }

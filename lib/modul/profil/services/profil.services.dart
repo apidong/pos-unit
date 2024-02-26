@@ -12,17 +12,13 @@ class Profilservice {
 
     try {
       final idDevice = await httpservice.getid();
-      response = await httpservice
-          .postRequest('api/admin/logout', {'device': idDevice});
+      response = await httpservice.postRequest('api/mobile/auth/logout', {'device': idDevice});
 
       if (response.statusCode == 200) {
         final data = response.data;
         return data;
       }
-      return {
-        'status': false,
-        'message': 'hubungi administrator : unknown error at LayananServices'
-      };
+      return {'status': false, 'message': 'hubungi administrator : unknown error at LayananServices'};
     } catch (_) {
       final rError = {'status': false, 'message': _.toString()};
       return rError;
@@ -33,18 +29,14 @@ class Profilservice {
     Response response;
 
     try {
-      response = await httpservice
-          .downloadRequest('api/admin/profil/foto', filename, {});
+      response = await httpservice.downloadRequest('api/admin/profil/foto', filename, {});
       final output = await getTemporaryDirectory();
       final savePath = '${output.path}/$filename';
 
       if (response.statusCode == 200) {
         return {'status': true, 'data': savePath};
       }
-      return {
-        'status': false,
-        'message': 'hubungi administrator : unknown error at LayananServices'
-      };
+      return {'status': false, 'message': 'hubungi administrator : unknown error at LayananServices'};
     } catch (_) {
       final rError = {'status': false, 'message': _.toString()};
       return rError;
@@ -55,8 +47,7 @@ class Profilservice {
     Response response;
 
     try {
-      response =
-          await httpservice.putRequest('api/admin/profil/ganti_password', data);
+      response = await httpservice.putRequest('api/admin/profil/ganti_password', data);
       if (response.statusCode == 200) {
         return {'status': true, 'message': 'success'};
       }

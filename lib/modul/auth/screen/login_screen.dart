@@ -45,11 +45,7 @@ class LoginScreenState extends State<LoginScreen> {
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              ShapedImage(
-                  imageTye: ImageType.ASSET,
-                  path: 'assets/images/bg.jpg',
-                  shape: Shape.SHAPE01,
-                  height: 290),
+              ShapedImage(imageTye: ImageType.ASSET, path: 'assets/images/bg.jpg', shape: Shape.SHAPE01, height: 290),
               MultiBlocProvider(
                 providers: [
                   BlocProvider(
@@ -63,14 +59,14 @@ class LoginScreenState extends State<LoginScreen> {
                       Container(
                         margin: const EdgeInsets.only(top: 40),
                         child: Image.asset(
-                          'assets/png/opendesa.png',
+                          'assets/images/logo.png',
                           width: sizeW / 1.8,
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 30),
                         child: const Text(
-                          'Layanan Perangkat',
+                          'Poin Of Sell',
                           style: AppTheme.titleStyle,
                         ),
                       ),
@@ -97,9 +93,7 @@ class LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       BlocConsumer<LoginBloc, LoginState>(
-                        listenWhen: (context, state) =>
-                            state.status == FormzSubmissionStatus.failure ||
-                            state.status == FormzSubmissionStatus.success,
+                        listenWhen: (context, state) => state.status == FormzSubmissionStatus.failure || state.status == FormzSubmissionStatus.success,
                         listener: (context, state) async {
                           if (state.status == FormzSubmissionStatus.success) {
                             context.router.replace(const HomeRoute());
@@ -119,14 +113,11 @@ class LoginScreenState extends State<LoginScreen> {
                             margin: const EdgeInsets.only(top: 20),
                             child: ElevatedButton(
                               style: AppTheme.raisedButtonStyle,
-                              onPressed: (state.status ==
-                                      FormzSubmissionStatus.inProgress)
+                              onPressed: (state.status == FormzSubmissionStatus.inProgress)
                                   ? null
                                   : () {
                                       //   context.loaderOverlay.show();
-                                      context
-                                          .read<LoginBloc>()
-                                          .add(LoginSubmitted());
+                                      context.read<LoginBloc>().add(LoginSubmitted());
                                     },
                               child: const Text(
                                 'Masuk',
@@ -191,8 +182,7 @@ class InputUsername extends StatelessWidget {
                 ),
                 contentPadding: const EdgeInsets.all(10),
                 hintText: "Email",
-                hintStyle:
-                    const TextStyle(fontSize: 14, color: Color(0xff6e7278)),
+                hintStyle: const TextStyle(fontSize: 14, color: Color(0xff6e7278)),
               ),
             ),
           ],
@@ -243,8 +233,7 @@ class InputPassword extends StatelessWidget {
                 ),
                 contentPadding: const EdgeInsets.all(10),
                 hintText: "Password",
-                hintStyle:
-                    const TextStyle(fontSize: 14, color: Color(0xff6e7278)),
+                hintStyle: const TextStyle(fontSize: 14, color: Color(0xff6e7278)),
               ),
             ),
           ],

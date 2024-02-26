@@ -32,8 +32,7 @@ class SplashScreenState extends State<SplashScreen> {
   startSplashScreen() async {
     Future.delayed(const Duration(milliseconds: 1500), () async {
       try {
-        final auth =
-            await SplashscreenService(httpservice: HttpService()).auth();
+        final auth = await SplashscreenService(httpservice: HttpService()).auth();
 
         if (auth) {
           context.router.replace(const HomeRoute());
@@ -44,12 +43,10 @@ class SplashScreenState extends State<SplashScreen> {
             context.router.replace(const LoginRoute());
             return;
           }
-          context.router.pushAndPopUntil(const PageRouteInfo(LoginRoute.name),
-              predicate: (route) => false);
+          context.router.pushAndPopUntil(const PageRouteInfo(LoginRoute.name), predicate: (route) => false);
         }
       } catch (e) {
-        context.router.pushAndPopUntil(const PageRouteInfo(LoginRoute.name),
-            predicate: (route) => false);
+        context.router.pushAndPopUntil(const PageRouteInfo(LoginRoute.name), predicate: (route) => false);
       }
     });
   }
@@ -59,10 +56,11 @@ class SplashScreenState extends State<SplashScreen> {
     // final sizeH = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[Image.asset('assets/png/logo_app.png')]),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+          Image.asset(
+            'assets/images/logo.png',
+          )
+        ]),
       ),
     );
   }
