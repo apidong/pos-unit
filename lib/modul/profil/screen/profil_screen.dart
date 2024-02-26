@@ -8,8 +8,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pos/config/route/route.gr.dart';
 import 'package:pos/modul/beranda/screen/dashboard_loading_screen.dart';
 import 'package:pos/modul/profil/bloc/logout/logout_bloc.dart' as logout;
-import 'package:pos/modul/profil/bloc/profil_user/profil_user_bloc.dart'
-    as profil_user;
+import 'package:pos/modul/profil/bloc/profil_user/profil_user_bloc.dart' as profil_user;
 
 @RoutePage()
 class ProfilScreen extends StatefulWidget {
@@ -71,7 +70,7 @@ class ProfilScreenState extends State<ProfilScreen> {
                       Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: Image.asset(
-                          'assets/png/opendesa.png',
+                          'assets/images/logo.png',
                           width: sizeW / 3,
                         ),
                       ),
@@ -80,8 +79,7 @@ class ProfilScreenState extends State<ProfilScreen> {
                   MultiBlocProvider(
                     providers: [
                       BlocProvider(
-                        create: (context) => profil_user.ProfilUserBloc()
-                          ..add(const profil_user.ProfilUserEvent()),
+                        create: (context) => profil_user.ProfilUserBloc()..add(const profil_user.ProfilUserEvent()),
                       ),
                       BlocProvider(
                         create: (context) => logout.LogoutBloc(),
@@ -106,17 +104,14 @@ class ProfilScreenState extends State<ProfilScreen> {
                           },
                           child: Container(),
                         ),
-                        BlocBuilder<profil_user.ProfilUserBloc,
-                                profil_user.ProfilUserState>(
-                            builder: (context, state) {
+                        BlocBuilder<profil_user.ProfilUserBloc, profil_user.ProfilUserState>(builder: (context, state) {
                           if (state.status == profil_user.PostStatus.loading) {
                             return const SkeletonHomeWelcome();
                           }
                           if (state.status == profil_user.PostStatus.success) {
                             final profil = state.profilUser;
                             return Container(
-                              margin: const EdgeInsets.only(
-                                  top: 50, left: 20, right: 20),
+                              margin: const EdgeInsets.only(top: 50, left: 20, right: 20),
                               height: 175,
                               width: double.infinity,
                               decoration: BoxDecoration(
@@ -129,8 +124,7 @@ class ProfilScreenState extends State<ProfilScreen> {
                                     color: Colors.grey.withOpacity(0.3),
                                     spreadRadius: 3,
                                     blurRadius: 5,
-                                    offset: const Offset(
-                                        0, 3), // changes position of shadow
+                                    offset: const Offset(0, 3), // changes position of shadow
                                   ),
                                 ],
                               ),
@@ -142,30 +136,12 @@ class ProfilScreenState extends State<ProfilScreen> {
                                     height: 100,
                                     width: 100,
                                     child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
+                                        borderRadius: BorderRadius.circular(100),
                                         child: Image.file(
                                           File(state.urlfoto),
-                                          errorBuilder: (context, error,
-                                                  stackTrace) =>
-                                              Image.asset(
-                                                  'assets/images/kuser.png'),
+                                          errorBuilder: (context, error, stackTrace) => Image.asset('assets/images/kuser.png'),
                                         )),
                                   ),
-                                  Text(
-                                    '${profil!.pamongJabatan} ${profil.namaDesa}',
-                                    style: const TextStyle(
-                                        color: Color(0xff141ee3),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Text(
-                                    profil.pamongNama.toString(),
-                                    style: const TextStyle(
-                                        color: Color(0xff141ee3),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w700),
-                                  )
                                 ],
                               ),
                             );
@@ -173,14 +149,12 @@ class ProfilScreenState extends State<ProfilScreen> {
                           return Container();
                         }),
                         Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
+                          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                           padding: const EdgeInsets.only(top: 0, bottom: 5),
                           width: sizeW - 40,
                           decoration: BoxDecoration(
                             color: const Color(0xfffafafa),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(8)),
+                            borderRadius: const BorderRadius.all(Radius.circular(8)),
                             border: Border.all(
                               color: const Color(0xFF49566E),
                               width: 0.1,
@@ -190,8 +164,7 @@ class ProfilScreenState extends State<ProfilScreen> {
                                 color: Color.fromRGBO(156, 163, 175, 0.651),
                                 spreadRadius: 0,
                                 blurRadius: 4,
-                                offset:
-                                    Offset(1, 1), // changes position of shadow
+                                offset: Offset(1, 1), // changes position of shadow
                               ),
                             ],
                           ),
@@ -205,244 +178,34 @@ class ProfilScreenState extends State<ProfilScreen> {
                               Column(
                                 children: [
                                   IntrinsicHeight(
-                                      child: Ink(
-                                    child: Material(
-                                      child: InkWell(
-                                          onTap: () async {
-                                            context.router.push(
-                                                const DetailProfilRoute());
-                                          },
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            children: [
-                                              const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10)),
-                                              SizedBox(
-                                                height: 50,
-                                                width: 50,
-                                                child: Icon(
-                                                  FlutterRemix.user_search_line,
-                                                  color: Theme.of(context)
-                                                      .primaryColorLight,
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: const Text(
-                                                    'Lihat Profil Lengkap',
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 50,
-                                                width: 50,
-                                                child: Icon(
-                                                  FlutterRemix
-                                                      .arrow_right_s_line,
-                                                  color: Color(0xff414B5A),
-                                                ),
-                                              ),
-                                              const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 10)),
-                                            ],
-                                          )),
-                                    ),
-                                  )),
-                                  const Divider(
-                                    height: 0,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  IntrinsicHeight(
-                                      child: Ink(
-                                    child: Material(
-                                      child: InkWell(
-                                          splashColor: Colors.grey.shade300,
-                                          onTap: () {
-                                            context.router.push(
-                                                const UpdateProfilRoute());
-                                          },
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            children: [
-                                              const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10)),
-                                              SizedBox(
-                                                height: 50,
-                                                width: 50,
-                                                child: Icon(
-                                                    FlutterRemix.key_2_line,
-                                                    color: Theme.of(context)
-                                                        .primaryColorLight),
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: const Text(
-                                                    'Perbarui Profil',
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 50,
-                                                width: 50,
-                                                child: Icon(
-                                                  FlutterRemix
-                                                      .arrow_right_s_line,
-                                                  color: Color(0xff414B5A),
-                                                ),
-                                              ),
-                                              const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 10)),
-                                            ],
-                                          )),
-                                    ),
-                                  )),
-                                  const Divider(
-                                    height: 0,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  IntrinsicHeight(
-                                      child: Ink(
-                                    child: Material(
-                                      child: InkWell(
-                                          splashColor: Colors.grey.shade300,
-                                          onTap: () {
-                                            context.router.push(
-                                                const GantiPasswordRoute());
-                                          },
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            children: [
-                                              const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10)),
-                                              SizedBox(
-                                                height: 50,
-                                                width: 50,
-                                                child: Icon(
-                                                    FlutterRemix.key_2_line,
-                                                    color: Theme.of(context)
-                                                        .primaryColorLight),
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: const Text(
-                                                    'Ganti Password',
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 50,
-                                                width: 50,
-                                                child: Icon(
-                                                  FlutterRemix
-                                                      .arrow_right_s_line,
-                                                  color: Color(0xff414B5A),
-                                                ),
-                                              ),
-                                              const Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 10)),
-                                            ],
-                                          )),
-                                    ),
-                                  )),
-                                  const Divider(
-                                    height: 0,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  IntrinsicHeight(
                                     child: Ink(
                                       child: Material(
-                                        child: BlocBuilder<logout.LogoutBloc,
-                                            logout.LogoutState>(
+                                        child: BlocBuilder<logout.LogoutBloc, logout.LogoutState>(
                                           builder: (context, state) {
                                             return InkWell(
-                                                splashColor:
-                                                    Colors.grey.shade300,
+                                                splashColor: Colors.grey.shade300,
                                                 onTap: () {
-                                                  context
-                                                      .read<logout.LogoutBloc>()
-                                                      .add(const logout
-                                                          .LogoutSubmitEvent());
+                                                  context.read<logout.LogoutBloc>().add(const logout.LogoutSubmitEvent());
                                                 },
                                                 child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .stretch,
+                                                  crossAxisAlignment: CrossAxisAlignment.stretch,
                                                   children: [
-                                                    const Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10)),
+                                                    const Padding(padding: EdgeInsets.only(left: 10)),
                                                     const SizedBox(
                                                       height: 50,
                                                       width: 50,
                                                       child: Icon(
-                                                        FlutterRemix
-                                                            .logout_circle_line,
-                                                        color:
-                                                            Color(0xffEF4444),
+                                                        FlutterRemix.logout_circle_line,
+                                                        color: Color(0xffEF4444),
                                                       ),
                                                     ),
                                                     Expanded(
                                                       child: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(left: 10),
-                                                        alignment: Alignment
-                                                            .centerLeft,
+                                                        padding: const EdgeInsets.only(left: 10),
+                                                        alignment: Alignment.centerLeft,
                                                         child: const Text(
                                                           'Keluar',
-                                                          style: TextStyle(
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              color: Color(
-                                                                  0xffEF4444)),
+                                                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xffEF4444)),
                                                         ),
                                                       ),
                                                     ),
@@ -450,16 +213,11 @@ class ProfilScreenState extends State<ProfilScreen> {
                                                       height: 50,
                                                       width: 50,
                                                       child: Icon(
-                                                        FlutterRemix
-                                                            .arrow_right_s_line,
-                                                        color:
-                                                            Color(0xff414B5A),
+                                                        FlutterRemix.arrow_right_s_line,
+                                                        color: Color(0xff414B5A),
                                                       ),
                                                     ),
-                                                    const Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                right: 10)),
+                                                    const Padding(padding: EdgeInsets.only(right: 10)),
                                                   ],
                                                 ));
                                           },

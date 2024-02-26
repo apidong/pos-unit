@@ -18,5 +18,6 @@ class AppRouter extends $AppRouter {
           AutoRoute(page: ProfilRoute.page, path: 'profil'),
         ]),
         AutoRoute(path: '/periksa/:id', page: PerikasPengajuanRoute.page, fullMatch: true),
+        AutoRoute(path: '/periksa/success', page: PeriksaSuksesRoute.page),
       ];
 }

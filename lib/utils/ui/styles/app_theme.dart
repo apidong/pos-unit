@@ -64,7 +64,7 @@ class AppTheme {
       TextStyle(fontFamily: 'Lato', fontSize: 20, color: Color(0xff394043));
   static const TextStyle buttonStyle = TextStyle(
       fontFamily: 'Lato',
-      fontSize: 12,
+      fontSize: 18,
       color: Color.fromARGB(255, 255, 255, 255));
   static const TextStyle dataStyleDark = TextStyle(
       fontFamily: 'Lato',

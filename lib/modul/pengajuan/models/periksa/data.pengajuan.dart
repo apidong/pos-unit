@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'alamat.pengajuan.dart';
+import 'detail.pengajuan.dart';
 import 'koordinat_penerima.pengajuan.dart';
 import 'koordinat_pengirim.pengajuan.dart';
 import 'pelanggan.pengajuan.dart';
@@ -49,6 +50,7 @@ class Data {
   dynamic detailKurir;
   Alamat? alamat;
   Pelanggan? pelanggan;
+  List<Detail>? detail;
 
   Data({
     this.id,
@@ -75,6 +77,7 @@ class Data {
     this.detailKurir,
     this.alamat,
     this.pelanggan,
+    this.detail,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);

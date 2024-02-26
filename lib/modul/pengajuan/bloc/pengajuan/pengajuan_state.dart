@@ -14,7 +14,7 @@ class PengajuanState extends Equatable {
     this.pengajuan,
     this.status = PostStatus.initial,
     this.pesan = '',
-    this.limit = 25,
+    this.limit = 50,
     this.page = 0,
     this.hasreachedMax = false,
   });

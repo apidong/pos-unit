@@ -43,97 +43,102 @@ class PengajuanScreenState extends State<PengajuanScreen> {
     final sizeW = MediaQuery.of(context).size.width;
     return Scaffold(
         body: LoaderOverlay(
-      child: SingleChildScrollView(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Container(
-              width: sizeW,
-              height: 250,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 82, 175),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(sizeW * .13),
-                  bottomRight: Radius.circular(sizeW * .13),
-                ),
-                image: const DecorationImage(
-                  image: AssetImage("assets/images/bg.jpg"),
-                  fit: BoxFit.cover,
+      child: BlocProvider(
+        create: (context) => PengajuanBloc()..add(const InitialPengajuanEvent()),
+        child: SingleChildScrollView(
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Container(
+                width: sizeW,
+                height: 250,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 0, 82, 175),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(sizeW * .13),
+                    bottomRight: Radius.circular(sizeW * .13),
+                  ),
+                  image: const DecorationImage(
+                    image: AssetImage("assets/images/bg.jpg"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsetsDirectional.symmetric(horizontal: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Image.asset(
-                    'assets/images/logo.png',
-                    width: sizeW / 9,
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: RichText(
-                                  text: const TextSpan(children: [
-                                    WidgetSpan(
-                                        alignment: PlaceholderAlignment.middle,
-                                        child: FaIcon(
-                                          FontAwesomeIcons.solidEnvelope,
-                                          color: kPrimaryColor,
-                                          size: 22,
-                                        )),
-                                    WidgetSpan(
-                                        alignment: PlaceholderAlignment.middle,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(left: 5),
-                                          child: Text(
-                                            // ignore: prefer_interpolation_to_compose_strings
-                                            'Daftar Pengajuan',
-                                            style: AppTheme.headerStyle,
-                                          ),
-                                        ))
-                                  ]),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 30,
-                                child: Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.rotate,
-                                    color: kPrimaryColor,
-                                    size: 25,
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsetsDirectional.symmetric(horizontal: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Image.asset(
+                      'assets/images/logo.png',
+                      width: sizeW / 9,
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: RichText(
+                                    text: const TextSpan(children: [
+                                      WidgetSpan(
+                                          alignment: PlaceholderAlignment.middle,
+                                          child: FaIcon(
+                                            FontAwesomeIcons.solidEnvelope,
+                                            color: kPrimaryColor,
+                                            size: 22,
+                                          )),
+                                      WidgetSpan(
+                                          alignment: PlaceholderAlignment.middle,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(left: 5),
+                                            child: Text(
+                                              // ignore: prefer_interpolation_to_compose_strings
+                                              'Daftar Pengajuan',
+                                              style: AppTheme.headerStyle,
+                                            ),
+                                          ))
+                                    ]),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
-                      )),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  MultiBlocProvider(
-                    providers: [
-                      BlocProvider(
-                        create: (context) => PengajuanBloc()..add(const InitialPengajuanEvent()),
-                      ),
-                    ],
-                    child: BlocBuilder<PengajuanBloc, PengajuanState>(builder: (context, state) {
+                                BlocBuilder<PengajuanBloc, PengajuanState>(
+                                  builder: (context, state) {
+                                    return InkWell(
+                                      onTap: () {
+                                        context.read<PengajuanBloc>().add(const ReloadEvent());
+                                      },
+                                      child: Container(
+                                        height: 30,
+                                        width: 30,
+                                        child: Center(
+                                          child: FaIcon(
+                                            FontAwesomeIcons.rotate,
+                                            color: kPrimaryColor,
+                                            size: 25,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )
+                              ],
+                            ),
+                          ],
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    BlocBuilder<PengajuanBloc, PengajuanState>(builder: (context, state) {
                       if (state.status == PostStatus.loading) {
                         return Column(
                           children: List.generate(5, (index) => const ListPengajuanSkeleton()),
@@ -183,7 +188,7 @@ class PengajuanScreenState extends State<PengajuanScreen> {
                               String textstatus;
                               switch (status) {
                                 case 'menunggu':
-                                  coloricon = Colors.blue.shade800;
+                                  coloricon = Colors.lightBlue.shade800;
                                   iconstatus = FlutterRemix.time_fill;
                                   textstatus = 'Periksa';
                                   break;
@@ -196,6 +201,11 @@ class PengajuanScreenState extends State<PengajuanScreen> {
                                   coloricon = Colors.green.shade800;
                                   iconstatus = FlutterRemix.check_fill;
                                   textstatus = 'Revisi';
+                                  break;
+                                case 'setuju':
+                                  coloricon = Colors.purple.shade700;
+                                  iconstatus = FlutterRemix.check_fill;
+                                  textstatus = 'Disetujui';
                                   break;
                                 default:
                                   coloricon = Colors.yellow.shade800;
@@ -304,12 +314,12 @@ class PengajuanScreenState extends State<PengajuanScreen> {
                       }
 
                       return Container();
-                    }),
-                  )
-                ],
-              ),
-            )
-          ],
+                    })
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     ));

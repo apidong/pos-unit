@@ -8,8 +8,7 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:pos/modul/beranda/screen/dashboard_loading_screen.dart';
-import 'package:pos/modul/profil/bloc/profil_user/profil_user_bloc.dart'
-    as profil_user;
+import 'package:pos/modul/profil/bloc/profil_user/profil_user_bloc.dart' as profil_user;
 
 @RoutePage()
 class DashboardScreen extends StatefulWidget {
@@ -47,15 +46,13 @@ class DashboardScreenState extends State<DashboardScreen> {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => profil_user.ProfilUserBloc()
-              ..add(const profil_user.ProfilUserEvent()),
+            create: (context) => profil_user.ProfilUserBloc()..add(const profil_user.ProfilUserEvent()),
           ),
         ],
         child: Builder(builder: (context) {
           return RefreshIndicator(
             onRefresh: () async {},
-            child: BlocBuilder<profil_user.ProfilUserBloc,
-                profil_user.ProfilUserState>(builder: (context, state) {
+            child: BlocBuilder<profil_user.ProfilUserBloc, profil_user.ProfilUserState>(builder: (context, state) {
               if (state.status == profil_user.PostStatus.success) {
                 final profil = state.profilUser;
                 return SingleChildScrollView(
@@ -98,8 +95,7 @@ class DashboardScreenState extends State<DashboardScreen> {
                           Column(
                             children: [
                               Container(
-                                margin: const EdgeInsets.only(
-                                    top: 50, left: 20, right: 20),
+                                margin: const EdgeInsets.only(top: 50, left: 20, right: 20),
                                 height: 195,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -112,8 +108,7 @@ class DashboardScreenState extends State<DashboardScreen> {
                                       color: Colors.grey.withOpacity(0.3),
                                       spreadRadius: 3,
                                       blurRadius: 5,
-                                      offset: const Offset(
-                                          0, 3), // changes position of shadow
+                                      offset: const Offset(0, 3), // changes position of shadow
                                     ),
                                   ],
                                 ),
@@ -125,38 +120,18 @@ class DashboardScreenState extends State<DashboardScreen> {
                                       height: 100,
                                       width: 100,
                                       child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
+                                          borderRadius: BorderRadius.circular(100),
                                           child: Image.file(
                                             File(state.urlfoto),
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              return Image.asset(
-                                                  'assets/images/kuser.png');
+                                            errorBuilder: (context, error, stackTrace) {
+                                              return Image.asset('assets/images/kuser.png');
                                             },
                                           )),
                                     ),
                                     const Text(
                                       'Selamat Datang',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700),
+                                      style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700),
                                     ),
-                                    Text(
-                                      '${profil!.pamongJabatan} ${profil.namaDesa}',
-                                      style: const TextStyle(
-                                          color: Color(0xff141ee3),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                    Text(
-                                      profil.pamongNama.toString(),
-                                      style: const TextStyle(
-                                          color: Color(0xff141ee3),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700),
-                                    )
                                   ],
                                 ),
                               ),

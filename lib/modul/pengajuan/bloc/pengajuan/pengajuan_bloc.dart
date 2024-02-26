@@ -30,5 +30,15 @@ class PengajuanBloc extends Bloc<PengajuanEvent, PengajuanState> {
         state.copyWith(status: PostStatus.failure, pesan: e.toString());
       }
     });
+
+    on<ReloadEvent>((event, emit) {
+      emit(state.copyWith(status: PostStatus.loading, hasreachedMax: false, pengajuan: null, page: 0));
+      add(const InitialPengajuanEvent());
+    });
+
+    on<NextPageEvent>((event, emit) {
+      if (state.hasreachedMax) return;
+      add(const InitialPengajuanEvent());
+    });
   }
 }

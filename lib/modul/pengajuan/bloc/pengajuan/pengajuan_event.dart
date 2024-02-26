@@ -13,3 +13,17 @@ class InitialPengajuanEvent extends PengajuanEvent {
   @override
   List<Object> get props => [];
 }
+
+class ReloadEvent extends PengajuanEvent {
+  const ReloadEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class NextPageEvent extends PengajuanEvent {
+  const NextPageEvent();
+
+  @override
+  List<Object> get props => [];
+}

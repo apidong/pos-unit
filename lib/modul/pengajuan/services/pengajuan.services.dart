@@ -33,4 +33,46 @@ class PengajuanServices {
       return rError;
     }
   }
+
+  Future<dynamic> setuju(id) async {
+    try {
+      Response response = await httpservice.postRequest('/api/mobile/pengajuan/setuju/' + id, {});
+      if (response.statusCode == 200) {
+        return {'status': true, 'data': response.data};
+      }
+
+      return {'status': false, 'message': response.statusMessage};
+    } catch (_) {
+      final rError = {'status': false, 'message': _.toString()};
+      return rError;
+    }
+  }
+
+  Future<dynamic> tolak(id, String keterangan) async {
+    try {
+      Response response = await httpservice.postRequest('/api/mobile/pengajuan/tolak/' + id, {'keterangan': keterangan});
+      if (response.statusCode == 200) {
+        return {'status': true, 'data': response.data};
+      }
+
+      return {'status': false, 'message': response.statusMessage};
+    } catch (_) {
+      final rError = {'status': false, 'message': _.toString()};
+      return rError;
+    }
+  }
+
+  Future<dynamic> revisi(id, String keterangan) async {
+    try {
+      Response response = await httpservice.postRequest('/api/mobile/pengajuan/revisi/' + id, {'keterangan': keterangan});
+      if (response.statusCode == 200) {
+        return {'status': true, 'data': response.data};
+      }
+
+      return {'status': false, 'message': response.statusMessage};
+    } catch (_) {
+      final rError = {'status': false, 'message': _.toString()};
+      return rError;
+    }
+  }
 }

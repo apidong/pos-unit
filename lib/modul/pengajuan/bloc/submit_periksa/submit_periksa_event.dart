@@ -1,13 +1,13 @@
-part of 'periksa_pengajuan_bloc.dart';
+part of 'submit_periksa_bloc.dart';
 
-sealed class PeriksaPengajuanEvent extends Equatable {
-  const PeriksaPengajuanEvent();
+class SubmitPeriksaEvent extends Equatable {
+  const SubmitPeriksaEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class InitialPeriksaPengajuanEvent extends PeriksaPengajuanEvent {
+class InitialPeriksaPengajuanEvent extends SubmitPeriksaEvent {
   final String id;
   const InitialPeriksaPengajuanEvent(this.id);
 
@@ -15,15 +15,17 @@ class InitialPeriksaPengajuanEvent extends PeriksaPengajuanEvent {
   List<Object> get props => [id];
 }
 
-class SetujuPengajuanEvent extends PeriksaPengajuanEvent {
+class SetujuPengajuanEvent extends SubmitPeriksaEvent {
   final String id;
   const SetujuPengajuanEvent(this.id);
 
   @override
   List<Object> get props => [id];
+
+  void add(SetujuPengajuanEvent setujuPengajuanEvent) {}
 }
 
-class TolakPengajuanEvent extends PeriksaPengajuanEvent {
+class TolakPengajuanEvent extends SubmitPeriksaEvent {
   final String id;
   final String keterangan;
   const TolakPengajuanEvent(this.id, this.keterangan);
@@ -32,7 +34,7 @@ class TolakPengajuanEvent extends PeriksaPengajuanEvent {
   List<Object> get props => [id, keterangan];
 }
 
-class RevisiPengajuanEvent extends PeriksaPengajuanEvent {
+class RevisiPengajuanEvent extends SubmitPeriksaEvent {
   final String id;
   final String keterangan;
 
